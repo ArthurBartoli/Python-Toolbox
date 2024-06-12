@@ -1,5 +1,6 @@
 from PIL import Image, ImageDraw
 from os.path import join
+import glob
 
 def pixelate_image(input_path, output_path, pixel_size, spacing, standard_size=1000):
     image = Image.open(input_path)
@@ -30,12 +31,16 @@ def pixelate_image(input_path, output_path, pixel_size, spacing, standard_size=1
     # Save as .png for transparency
     output_image.save(output_path, format="PNG")
 
-input_name = "SolarSquare.png"
-input_path = join("Retropix\\Input", input_name)
-output_name = input_name[:-4] + '_pixelisee.png'
-output_path = join("Retropix\\Output", output_name)
-pixel_size = 10  
-spacing = 6    
+pixel_size = 6  
+spacing = 4    
 # pixel_size to 10 and spacing to 6 gives a good render
 
-pixelate_image(input_path, output_path, pixel_size, spacing)
+input_path = join("Retropix", "Input")
+output_folder = join("Retropix", "Output")
+input_folder = glob.glob(input_path + "\\*.png")
+
+for input_filepath in input_folder:
+    input_filename = input_filepath.split('\\')[-1]
+    output_name = input_filename[:-4] + '_retropix.png'
+    output_path = join("Retropix\\Output", output_name)
+    pixelate_image(input_filepath, output_path, pixel_size, spacing)
