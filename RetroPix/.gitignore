@@ -1,2 +1,5 @@
 input/*.png
+input/*
 output/*.png
+output/*
+feed_for_stream/*

@@ -2,11 +2,10 @@ from PIL import Image, ImageDraw
 from os.path import join
 from glob import glob
 
-def reverse_pixelate_image_black(input_path, output_folder, filename, pixel_size=5, space_size=2):
+def reverse_pixelate_image(input_path, output_path, pixel_size=5, space_size=2):
     
     # Load the background image
-    background_image_path = join(input_path, filename)
-    background = Image.open(background_image_path).convert('RGBA')
+    background = Image.open(input_path).convert('RGBA')
     background = background.resize((1920, 1080))
 
     # Dimensions of the final image
@@ -43,7 +42,6 @@ def reverse_pixelate_image_black(input_path, output_folder, filename, pixel_size
     combined.putdata(final)
 
     # Save the final image
-    output_path = join(output_folder, "overlay_pixel.png")
     combined.save(output_path, format="PNG")
 
     print(f"Overlay image saved to {output_path}")
@@ -56,6 +54,6 @@ if __name__ == "__main__":
 
     # 5, 2 is best for this format
 
-    reverse_pixelate_image_black(input_path, output_folder, filename="ruins_resclaed.png", 
-                                 pixel_size=5, space_size=2)
+    reverse_pixelate_image(input_path, output_folder, filename="cya.png", 
+                           pixel_size=7, space_size=4)
     
