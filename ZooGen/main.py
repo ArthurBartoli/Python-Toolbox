@@ -1,10 +1,14 @@
 '''The goal of this project is to randomly generate a natural environment datascape
 for training data analyst at extracting complex information in visual form. 
+This is more complicated than it looks because it can only be a purely data driven
+program, and not use that much objects. 
 '''
 
 import pandas as pd
 import numpy as np 
 from pprint import pprint
+
+from raw_data_gen import *
 
 
 grass = pd.DataFrame(np.random.randint(0, 60, size=(100, 1)), columns=["Grass height (cm)"]) 
